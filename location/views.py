@@ -9,9 +9,7 @@ class LocationListView(APIView):
 
     def get(self, _request):
         location = Location.objects.all()
-        print(location)
         serialized_location = LocationSerializer(location, many=True)
         return Response(serialized_location.data, status=status.HTTP_200_OK)
-        print('LOCATION', location)
         
 
