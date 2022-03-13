@@ -1,7 +1,7 @@
 from http.client import NOT_FOUND
 from re import L
-from urllib import response
-from xml.dom import NotFoundErr
+from urllib import request, response
+
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -36,3 +36,16 @@ class LocationDetailView(APIView):
       location_one = self.get_object(pk)
       serializer = LocationSerializer(location_one)
       return Response(serializer.data)
+    
+    def put(self, request, pk, format=None):
+      location_one = self.get_object(pk)
+      serializer = LocationSerializer(location_one, data=request.data)
+      if serializer.is_valid():
+          serializer.save()
+          return Response(serializer.data)
+      return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
+    
+    def delete(self, _request, pk, format=None):
+      location_one = self.get_object(pk)
+      location_one.delete()
+      return Response(status=status.HTTP_204_NO_CONTEN)
