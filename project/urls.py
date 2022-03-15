@@ -15,12 +15,13 @@ Including another URLconf
 """
 from xml.etree.ElementInclude import include
 from django.contrib import admin
-from django.urls import path, include 
+from django.urls import path, include
 
 
 urlpatterns = [
     # path('location/', include('location.urls')),  
     path('admin/', admin.site.urls),
-    path('location/', include('location.urls'))
+    path('location/', include('location.urls')),
+    path('api-auth/',include('rest_framework.urls')),
     
 ]
