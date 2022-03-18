@@ -1,5 +1,4 @@
 from django.db import models
-from pygments.formatters.html import HtmlFormatter
 
 
 
@@ -14,8 +13,7 @@ class Location(models.Model):
     land_mark = models.CharField(max_length=100, default=None, blank=True)
     description = models.CharField(max_length=400, default=None)
     image = models.CharField(max_length=100, default=None, blank=True)
-    owner = models.ForeignKey('auth.User', related_name='location', on_delete=models.CASCADE, default=1)
-    highlighted = models.TextField
+    owner = models.ForeignKey('auth.User', related_name='location', on_delete=models.CASCADE)
     
     def __str__(self):
         return f"{self.land_mark} - {self.city}"

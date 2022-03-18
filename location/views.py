@@ -1,9 +1,11 @@
 from rest_framework import generics
 
+from location.permissions import IsOwnerOrReadOnly
+
 from .models import Location
 from .serializers import LocationSerializer, UserSerializer
 from django.contrib.auth.models import User
-from location.serializers import UserSerializer
+from .serializers import UserSerializer
 from rest_framework import permissions
 
 class LocationListView(generics.ListCreateAPIView):
@@ -15,7 +17,8 @@ class LocationListView(generics.ListCreateAPIView):
       serializer.save(owner=self.request.user)
       
 class LocationDetailView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly , 
+                          IsOwnerOrReadOnly]
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
 
