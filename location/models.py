@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.gis.db import models
+from django.contrib.gis.geos import Point
 
 
 
@@ -13,7 +15,8 @@ class Location(models.Model):
     land_mark = models.CharField(max_length=100, default=None, blank=True)
     description = models.CharField(max_length=400, default=None)
     image = models.CharField(max_length=100, default=None, blank=True)
+    pointfield = models.PointField(geography=True, default=Point(0.0, 0.0))
     owner = models.ForeignKey('auth.User', related_name='location', on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.land_mark} - {self.city}"
+        return f"{self.land_mark} - {self.city} - {self.pointfield}"

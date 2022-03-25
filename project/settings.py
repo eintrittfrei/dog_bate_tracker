@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django.contrib.gis',
     'location',
     'client',
-    # 'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -81,13 +81,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'default': { 
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'dog-bate-db',
         'HOST' : 'localhost',
         'PORT' : 5432
     }
 }
+# 'django.db.backends.postgresql_psycopg2',
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
