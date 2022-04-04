@@ -1,5 +1,6 @@
 import React from 'react' 
 import image from '../assets/dogs.jpg'
+import { Link } from 'react-router-dom'
 
 
 const DogBateHome = () => {
@@ -12,9 +13,11 @@ const DogBateHome = () => {
   justifyContent: "center",
   alignItems: "center"}}>
     <h1 style={{fontFamily: "raleway", color: "white", fontSize: "10vh", textAlign: "center"}}>DOG BATE TRACKER </h1>
+    <Link to={'/all'}>ENTER</Link>
     <h2 style={{fontFamily: "raleway", color: "white"}}>coming soon...</h2>
   </div>
   </div>
+  
   )
 
 

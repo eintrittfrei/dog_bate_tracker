@@ -1,6 +1,4 @@
-from urllib import response
 from django.http import Http404
-from rest_framework import generics
 
 from location.permissions import IsOwnerOrReadOnly
 
@@ -12,6 +10,7 @@ from rest_framework import permissions
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import generics
       
 class LocationListView(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
