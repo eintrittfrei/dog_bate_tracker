@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import image from '../assets/twodogs.jpg'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import { Link } from 'react-router-dom'
 
@@ -23,41 +24,58 @@ const Detail = () => {
   }, [id])
 
 
-
-
   return (
     <>
 
       <div className="w3-container" style={{
         display: "flex", flexDirection: "column", justifyContent: "flex-start",
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`, 
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`,
         backgroundPosition: "center", height: "100vh", backgroundSize: "cover",
       }}>
         <div className='wrapper'>
           <section style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div className="w3-container w3-round-xlarge" style={{ color: "white", display: "flex", 
-            flexDirection: "column", alignItems: "center" }}>
+            <div className="w3-container w3-round-xlarge" style={{
+              color: "white", display: "flex",
+              flexDirection: "column", alignItems: "center"
+            }}>
               <h1 style={{ fontFamily: "raleway", textAlign: "center" }}>DOG BATE TRACKER</h1>
               <h3 style={{ fontFamily: "raleway" }}>Recent sitings</h3>
             </div>
           </section>
-          <div className='w3-panel w3-red w3-round-xlarge' style={{ backgroundColor: "#ed5347", 
-          color: "#faf3e7", fontFamily: "Roboto", textAlign: "center" }}>
+          <div className='w3-panel w3-red w3-round-xlarge' style={{
+            backgroundColor: "#ed5347",
+            color: "#faf3e7", fontFamily: "Roboto", textAlign: "center"
+          }}>
             <h1>{location.city}</h1>
             <h2>{location.date_time}</h2>
             <h3>{location.street}</h3>
+            <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "185px"}}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[51.505, -0.09]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
           </div>
-          <section className='navigation' style={{ display: "flex", flexDirection: "column", 
-          alignItems: "center" }}>
-            <div className='w3-cell-row' style={{ width: "75%", color: "white", display: "flex", 
-            justifyContent: "space-evenly" }}>
+          <section className='navigation' style={{
+            display: "flex", flexDirection: "column",
+            alignItems: "center"
+          }}>
+            <div className='w3-cell-row' style={{
+              width: "75%", color: "white", display: "flex",
+              justifyContent: "space-evenly"
+            }}>
               <div className='w3-container w3-cell w3-round-xlarge' style={{ backgroundColor: "#ff897b" }}>
                 <p style={{ textAlign: "center" }}>View map</p></div>
             </div>
-            <Link to={'/all'} ><div className='w3-container w3-cell w3-round-xlarge' 
-            style={{ backgroundColor: "#9ac4c0" }}><p style={{ textAlign: "center" }}>Back to list</p></div></Link>
+            <Link to={'/all'} ><div className='w3-container w3-cell w3-round-xlarge'
+              style={{ backgroundColor: "#9ac4c0" }}><p style={{ textAlign: "center" }}>Back to list</p></div></Link>
           </section>
-
+         
         </div>
       </div>
     </>
