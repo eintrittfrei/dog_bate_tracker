@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import image from '../assets/twodogs.jpg'
 import { Link } from 'react-router-dom'
-
+const linkStyle = {
+textDecoration: "none"
+}
 
 
 const DogBateIndex = () => {
@@ -35,11 +37,11 @@ const DogBateIndex = () => {
         </div>
       </section>
 
-        <section>
+        <section style={{color: "white"}}>
           {locations && locations.length > 0 ?
-            <div className='w3-panel w3-red w3-round-xlarge' style={{backgroundColor: "#ed5347", color: "#faf3e7", fontFamily: "Roboto", textAlign: "center"}}>
+            <div className='w3-panel w3-red w3-large' style={{ fontFamily: "Roboto", textAlign: "center", width: "min(100% - 2rem, 600px)", marginInline: "auto", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
               {locations.map(location => {
-                return <Link key={location.id} to={`/all/${location.id}`}>
+                return <Link key={location.id} to={`/all/${location.id}`} style={linkStyle}>
                 <p key={location.id}>{location.city}, {location.post_code} - {location.land_mark}</p>
                 </Link>
               })}
@@ -50,13 +52,20 @@ const DogBateIndex = () => {
             </h2>
           }
         </section>
+
         <section className='navigation' style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <div className='w3-cell-row' style={{width: "75%", color: "white", display: "flex", justifyContent: "space-evenly"}}>
-            <Link to={'/add'} ><div className='w3-container w3-cell w3-round-xlarge' style={{backgroundColor: "#9ac4c0"}}><p style={{textAlign: "center"}}>Add new</p></div></Link>
-            <div className='w3-container w3-cell w3-round-xlarge' style={{backgroundColor: "#ff897b"}}><p style={{textAlign: "center"}}>View map</p></div>
+            <Link to={'/add'}style={{textDecoration: "none"}} >
+              <div className='w3-container w3-cell w3-large' style={{backgroundColor: "#9ac4c0"}}>
+                <p style={{textAlign: "center"}}>Add new</p>
+              </div>
+            </Link>
+            <div className='w3-container w3-cell w3-large' style={{backgroundColor: "#ff897b"}}>
+              <p style={{textAlign: "center"}}>View map</p>
+            </div>
           </div>
-
         </section>
+
       </div>
       </div>
     </>

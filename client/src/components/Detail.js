@@ -6,6 +6,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import { Link } from 'react-router-dom'
 
+const linkStyle = {
+  textDecoration: "none"
+  }
+
 const Detail = () => {
   const { id } = useParams()
   const [location, setLocation] = useState([])
@@ -32,7 +36,7 @@ const Detail = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`,
         backgroundPosition: "center", height: "100vh", backgroundSize: "cover",
       }}>
-        <div className='wrapper'>
+        <div className='wrapper' style={{color: "white"}}>
           <section style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div className="w3-container w3-round-xlarge" style={{
               color: "white", display: "flex",
@@ -42,19 +46,22 @@ const Detail = () => {
               <h3 style={{ fontFamily: "raleway" }}>Recent sitings</h3>
             </div>
           </section>
-          <div className='w3-panel w3-red w3-round-xlarge' style={{
-            backgroundColor: "#ed5347",
-            color: "#faf3e7", fontFamily: "Roboto", textAlign: "center"
+          <div className='w3-panel w3-red w3-round-xlarge' 
+          style={{
+            fontFamily: "Roboto", 
+            textAlign: "center", 
+            width: "min(100% - 2rem, 600px)", 
+            marginInline: "auto",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" 
           }}>
-            <h1>{location.city}</h1>
-            <h2>{location.date_time}</h2>
+            <h3>{location.city} {location.date_time}</h3>
             <h3>{location.street}</h3>
-            <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "185px"}}>
+            <MapContainer center={[52.527043, 13.415532]} zoom={13} style={{aspectRatio: "1 / 1", margin: "1rem"}}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[51.505, -0.09]}>
+            <Marker position={[52.527043, 13.415532]}>
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
@@ -72,7 +79,7 @@ const Detail = () => {
               <div className='w3-container w3-cell w3-round-xlarge' style={{ backgroundColor: "#ff897b" }}>
                 <p style={{ textAlign: "center" }}>View map</p></div>
             </div>
-            <Link to={'/all'} ><div className='w3-container w3-cell w3-round-xlarge'
+            <Link to={'/all'} style={linkStyle} ><div className='w3-container w3-cell w3-round-xlarge'
               style={{ backgroundColor: "#9ac4c0" }}><p style={{ textAlign: "center" }}>Back to list</p></div></Link>
           </section>
          

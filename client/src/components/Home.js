@@ -12,8 +12,8 @@ const DogBateHome = () => {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center"}}>
-    <h1 style={{fontFamily: "raleway", color: "white", fontSize: "10vh", textAlign: "center"}}>DOG BATE TRACKER </h1>
-    <Link to={'/all'}>ENTER</Link>
+    <h2 style={{fontFamily: "raleway", color: "white", fontSize: "10vh", textAlign: "center"}}>DOG BATE TRACKER </h2>
+    <h3><Link to={'/all'} style={{color: "#ed5347", textDecoration: "none", fontWeight: "bold"}}>ENTER</Link></h3>
     <h2 style={{fontFamily: "raleway", color: "white"}}>coming soon...</h2>
   </div>
   </div>

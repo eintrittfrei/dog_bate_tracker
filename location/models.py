@@ -16,7 +16,12 @@ class Location(models.Model):
     description = models.CharField(max_length=400, default=None)
     image = models.CharField(max_length=100, default=None, blank=True)
     pointfield = models.PointField(geography=True, default=Point(0.0, 0.0))
-    owner = models.ForeignKey('auth.User', related_name='location', on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+      'auth.User', 
+      related_name='location', 
+      on_delete=models.CASCADE, 
+      default=1
+      )
     
     def __str__(self):
         return f"{self.land_mark} - {self.city} - {self.pointfield}"
